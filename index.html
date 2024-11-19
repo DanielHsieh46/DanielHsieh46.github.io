@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Webpage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Link to Pacifico font -->
+</head>
+
+<style>
+  /* General styles */
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-family: 'Pacifico', cursive;
+  }
+
+  .page { 
+    display: none; 
+    opacity: 0; 
+    transition: opacity 1s;
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .page.active { 
+    display: flex; 
+    opacity: 1;
+  }
+
+  /* Button style */
+  .modern-button {
+    background: none;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: color 0.3s;
+    text-decoration: underline;
+  }
+
+  .modern-button:hover {
+    color: #ddd;
+  }
+
+  /* Page 1 styles */
+  #page1 h1 {
+    font-size: 60px;
+    color: #E99C28;
+    margin: 0 0 10px;
+  }
+
+  #page1 h2 {
+    font-size: 25px;
+    color: #E99C28;
+    margin: 0 0 20px;
+  }
+
+  .pumpkin {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    animation: rotate 2s infinite;
+  }
+  
+  /* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  #page1 h1 {
+    font-size: 28px;
+  }
+
+  #page1 h2 {
+    font-size: 20px;
+  }
+
+  .pumpkin {
+    width: 50px;
+  }
+
+  .modern-button {
+    font-size: 18px;
+    padding: 8px 15px;
+  }
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1367px) {
+  #page1 h1 {
+    font-size: 48px;
+  }
+
+  #page1 h2 {
+    font-size: 30px;
+  }
+
+  .pumpkin {
+    width: 65px;
+  }
+
+  .modern-button {
+    font-size: 20px;
+    padding: 10px 18px;
+  }
+}
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .pumpkin1 { top: 20%; left: 10%; }
+  .pumpkin2 { top: 30%; left: 90%; }
+  .pumpkin3 { top: 50%; left: 15%; }
+  .pumpkin4 { top: 70%; left: 70%; }
+  .pumpkin5 { top: 80%; left: 30%; }
+
+  /* Page 2 content layout */
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  #page2 h1 {
+  text-align: center;
+    color: #E99C28;
+     font-size: 60px;
+}
+  #page2 h2 {
+  text-align: center;
+     font-size: 20px;
+}
+
+
+  .image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page2-image {
+    width: auto;
+    max-height: 400px;
+    height: 100%;
+    margin: 0 10px;
+  }
+
+  .text-container {
+    flex: 1;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .fade-in {
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  #page2 p {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 20px;
+  }
+
+  .button-container {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3; /* Ensure buttons are above the canvas */
+}
+
+  /* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  #page2 h1 {
+    font-size: 20px;
+  }
+
+  #page2 h2 {
+    font-size: 14px;
+  }
+
+  .content {
+    flex-direction: column; /* Stack image and text for smaller screens */
+    align-items: center;
+    text-align: center;
+  }
+
+  .image-container {
+    flex: none;
+    margin-bottom: 20px; /* Add space between image and text */
+  }
+
+  .page2-image {
+    max-height: 200px; /* Reduce image height */
+  }
+
+  .text-container {
+    padding: 0;
+  }
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width:1367px) {
+  #page2 h1 {
+    font-size: 48px;
+  }
+
+  #page2 h2 {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 10px; /* Adjust padding for medium screens */
+  }
+
+  .page2-image {
+    max-height: 300px; /* Moderate image height */
+  }
+
+  .text-container {
+    padding: 10px 20px; /* Adjust padding */
+  }
+}
+
+  /* Snoopy bubble */
+  .snoopy-image {
+    width: 300px;
+    height: auto;
+    margin: 20px 0;
+    display: block;
+    cursor: pointer;
+  }
+
+  .bubble {
+    display: none;
+    position: absolute;
+    width: 350px;
+    height: auto;
+    left: 58%;
+    top: 3%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  .bubble1 { left: 58%; top: 3%; }
+  .bubble2 { left: 28%; top: 3%; }
+  .bubble3 { left: 25%; top: 50%; }
+  .bubble4 { left: 58%; top: 55%; }
+
+  .bubble.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  .snoopy-image {
+    width: 200px; /* Reduce Snoopy size */
+    margin: 10px 0; /* Adjust spacing */
+  }
+
+  /* Bubble adjustments */
+  .bubble {
+    width: 150px; /* Smaller bubbles */
+  }
+
+  .bubble {
+    left: 50%; /* Align centrally */
+    transform: translateX(-50%);
+  }
+  
+  .bubble1 {
+    left: 80%; /* Precise adjustment for second bubble */
+    top: 25%;
+  }
+
+  .bubble2 {
+    left: 20%; /* Precise adjustment for second bubble */
+    top: 25%;
+  }
+
+  .bubble3 {
+    left: 20%; /* Precise adjustment for third bubble */
+    top: 58%;
+  }
+
+  .bubble4 {
+    left: 80%; /* Precise adjustment for fourth bubble */
+    top: 60%;
+  }
+
+  #page3 h1 {
+    font-size: 20px; /* Adjust heading size */
+  }
+
+  #page3 p {
+    font-size: 16px; /* Adjust paragraph size */
+  }
+
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1367px) {
+  .snoopy-image {
+    width: 250px; /* Moderate Snoopy size */
+  }
+
+  /* Bubble adjustments */
+  .bubble {
+    width: 300px; /* Moderate bubbles */
+  }
+  
+  .bubble1{
+    left: 60%;
+    top: 15%;
+  }
+
+  .bubble2 {
+    left: 18%; /* Adjusted for iPad */
+    top: 15%;
+  }
+
+  .bubble3 {
+    left: 18%; /* Adjusted for iPad */
+    top: 54%;
+  }
+
+  .bubble4 {
+    left: 60%; /* Adjusted for iPad */
+    top: 58%;
+  }
+
+  #page3 h1 {
+    font-size: 20px; /* Moderate heading size */
+  }
+
+  #page3 p {
+    font-size: 18px; /* Moderate paragraph size */
+  }
+}
+
+  /* Increase the size of the flip book */
+.flip-book {
+  perspective: 1000px;
+  width: 500px; /* Increased from 300px */
+  height: 600px; /* Increased from 400px */
+  margin: 0 auto;
+  position: relative;
+}
+
+.flip-page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-origin: left;
+  background-color: #fff;
+  color: black;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; /* Increased font size for larger pages */
+  backface-visibility: hidden;
+  transition: transform 1s ease;
+}
+
+
+  .page-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  
+  .flip-page.gold { 
+  background-color: #FFD700; /* Gold */
+}
+
+.flip-page.tomato { 
+  background-color: #FF6347; /* Tomato */
+}
+
+.flip-page.pink { 
+  background-color: #FD8DDB; /* Pink */
+}
+
+.flip-page.blue { 
+  background-color: #8DFDDF; /* Blue */
+}
+
+
+
+
+  .flip-page.active { 
+    transform: rotateY(0deg); 
+  }
+  .flip-page.next { 
+    transform: rotateY(-180deg); 
+  }
+
+  .flip-page:not(.active):not(.next) {
+    transform: rotateY(180deg);
+  }
+  
+  /* Flip-page image style for odd-numbered pages */
+.flip-image1 {
+  height: 40vh; /* Sets the image height to 70% of the viewport height */
+  width: auto; /* Keeps the aspect ratio */
+  margin-bottom: 2px;
+  object-fit: contain; /* Ensures the image scales to fit within its container */
+}
+  
+.flip-image2 {
+  height: 33vh; /* Sets the image height to 70% of the viewport height */
+  width: auto; /* Keeps the aspect ratio */
+  margin-bottom: 2px;
+  object-fit: contain; /* Ensures the image scales to fit within its container */
+}
+  
+  
+  /* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  .flip-book {
+    width: 250px; /* Smaller width */
+    height: 350px; /* Smaller height */
+  }
+
+  .flip-page {
+    font-size: 20px; /* Smaller font size for text */
+  }
+
+  .flip-image1 {
+    height: 23vh;
+    object-fit: contain;
+    margin-top: 2px;
+  }
+  
+  .flip-image2 {
+    height: 16vh; /* Adjusted image size */
+    object-fit: contain;
+    margin-top: 5px;
+  }
+
+
+  #page4 h1 {
+    font-size: 18px; /* Adjust title size */
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1367px) {
+  .flip-book {
+    width: 400px; /* Moderate width */
+    height: 500px; /* Moderate height */
+  }
+
+  .flip-page {
+    font-size: 24px; /* Adjusted font size */
+  }
+
+  .flip-image1 {
+    height: 35vh; /* Moderate image height */
+  }
+  
+  .flip-image2 {
+    height: 20vh; /* Moderate image height */
+  }
+
+  #page4 h1 {
+    font-size: 28px; /* Moderate title size */
+    margin-bottom: 15px;
+    text-align: center;
+  }
+}
+  
+  /* Page 5 styles */
+#page5 h1 {
+  font-size: 50px;
+  color: #E99C28;
+  margin-bottom: 5px;
+}
+  
+#page5 p {
+  border: 1px ;  /* Add a white border */
+  padding: 5px;
+  max-width: 90%;           /* Adjust as needed for the desired width */
+  margin: 0px;
+  font-size: 20px;
+  line-height: 1.5;
+  white-space: normal;       /* Ensures text will wrap */
+  overflow-wrap: break-word; /* Allows text to break within the boundaries */
+}
+  
+  /* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  #page5 h1 {
+    font-size: 16px; /* Adjusted title size */
+  }
+
+  #page5 p {
+    font-size: 10px; /* Adjusted font size for the letter */
+  }
+
+  #typewriter-text {
+    font-size: 10px; /* Adjusted typewriter text size */
+  }
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1367px) {
+  #page5 h1 {
+    font-size: 40px; /* Moderate title size */
+  }
+
+  #page5 p {
+    font-size: 18px; /* Adjusted font size for the letter */
+  }
+
+  #typewriter-text {
+    font-size: 18px; /* Moderate typewriter text size */
+  }
+}
+  
+  /* Bubbling hearts container */
+/* Centering the content within #heart-container */
+/* Heart container to cover the entire page */
+#heart-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+  
+  .center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+  height: 100%; /* Ensures the content is centered vertically within the container */
+  z-index: 2; /* Ensures the content appears above the hearts */
+}
+
+/* Heart styling */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #E99C28;
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: bubble 5s ease-in infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #E99C28;
+  border-radius: 50%;
+}
+
+/* Position the "halves" of the heart */
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -10px;
+}
+
+/* Heart bubbling animation */
+@keyframes bubble {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(45deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1) rotate(45deg);
+    opacity: 0;
+  }
+}
+  
+  .center-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #E99C28;
+    font-size: 50px;
+    text-align: center;
+    z-index: 2; /* Ensures the title is on top of the canvas */
+  }
+
+  /* Ensure the canvas fills the page and is behind text */
+  #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensures canvas is below the title */
+  }
+  
+  /* Default styles for Page 6 */
+#page6 h1 {
+  font-size: 50px; /* Default title font size */
+  color: #E99C28;
+  text-align: center;
+}
+
+#page6 h2 {
+  font-size: 40px; /* Default subtitle font size */
+  color: #E99C28;
+  text-align: center;
+}
+
+/* Responsive styles for iPhone (max-width: 768px) */
+@media (max-width: 768px) {
+  #page6 h1 {
+    font-size: 36px; /* Adjusted title size */
+  }
+
+  #page6 h2 {
+    font-size: 20px; /* Adjusted subtitle size */
+  }
+}
+
+/* Responsive styles for iPad (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1367px) {
+  #page6 h1 {
+    font-size: 44px; /* Moderate title size */
+  }
+
+  #page6 h2 {
+    font-size: 26px; /* Moderate subtitle size */
+  }
+}
+
+</style>
+
+<body>
+
+  <!-- First Page -->
+  <section id="page1" class="page active">
+    <h1>Happy Halloween & The First Anniversary!</h1>
+    <h2>For Charming Pu</h2>
+    <span class="modern-button" onclick="goToPage('page2')">Click here to START</span>
+    <img src="https://i.imgur.com/VDlPBYl.png" alt="Pumpkin" class="pumpkin pumpkin1">
+    <img src="https://i.imgur.com/VDlPBYl.png" alt="Pumpkin" class="pumpkin pumpkin2">
+    <img src="https://i.imgur.com/VDlPBYl.png" alt="Pumpkin" class="pumpkin pumpkin3">
+    <img src="https://i.imgur.com/VDlPBYl.png" alt="Pumpkin" class="pumpkin pumpkin4">
+    <img src="https://i.imgur.com/VDlPBYl.png" alt="Pumpkin" class="pumpkin pumpkin5">
+  </section>
+
+  <!-- Second Page -->
+  <section id="page2" class="page">
+    <div class="content">
+      <div class="image-container">
+        <img src="https://i.imgur.com/gg9t6hA.jpeg" alt="Image 1" class="page2-image fade-in" id="image1">
+        <img src="https://i.imgur.com/PEXFufS.jpeg" alt="Image 2" class="page2-image" id="image2" style="display: none;">
+      </div>
+      <div class="text-container">
+        <h1>還記得第一次見面嗎！</h1>
+        <h2>那天可是你先開口聊天的喔（代表我也是有吸引力的麻 哈哈），跟你說我當下再想甚麼，我那時很開心喔！因為有漂亮女生跟我講話，嘻嘻~</h2>
+        <h2>而且你後來還來傳 IG 訊息給我，你都不知道我有多開心！之後我繼續跟你在 IG 聊天，那時候我身邊的人都說感覺會成ㄟ，我就更開心了 哈哈</h2>
+        <h2>阿因為我們第一次見面的那天沒有照片，為了應景萬聖節，不然都來個變裝好了</h2>
+      </div>
+    </div>
+    <div class="button-container">
+      <span class="modern-button" onclick="goToPage('page1')">Back</span>
+      <span class="modern-button" onclick="goToPage('page3')">Next</span>
+    </div>
+  </section>
+
+  <!-- Third Page -->
+  <section id="page3" class="page">
+    <h1>點史努比可以看到我覺得最棒的幾個回憶喔！</h1>
+    <img src="https://i.imgur.com/3PJNjnN.png" alt="Snoopy" class="snoopy-image" onclick="toggleBubble()">
+    <img src="https://i.imgur.com/T6Y80Wz.png" alt="Speaking Bubble" class="bubble bubble1" id="speaking-bubble">
+    <img src="https://i.imgur.com/uzfDJ6S.png" alt="Speaking Bubble" class="bubble bubble2" id="speaking-bubble2">
+    <img src="https://i.imgur.com/QZA5siR.png" alt="Speaking Bubble" class="bubble bubble3" id="speaking-bubble3">
+    <img src="https://i.imgur.com/4yF3p7e.png" alt="Speaking Bubble" class="bubble bubble4" id="speaking-bubble4">
+    <p style="font-size: 20px;"><strong>Snoopy 很可愛吧！</strong></p>
+
+    <div class="button-container">
+      <span class="modern-button" onclick="goToPage('page2')">Back</span>
+      <span class="modern-button" onclick="goToPage('page4')">Next</span>
+    </div>
+  </section>
+
+  <!-- Fourth Page - Flipping Book -->
+  <section id="page4" class="page">
+    <h1>Our Little Book of Memories </h1>
+    <div class="flip-book">
+      <div class="flip-page gold" id="flip-page1">
+        <div class="page-content">
+          <img src="https://i.imgur.com/ostmDG1.jpeg" alt="Image for Page 1" class="flip-image1">
+          <p><strong>第一次去新竹玩！</strong></p>
+        </div>
+      </div>
+      <div class="flip-page gold" id="flip-page2">
+        <div class="page-content">
+          <p><strong>這是你第一次帶我到新竹玩喔！那時候我們去了哪裡來著...動物園...巨城...河堤上的貓，其實新竹還蠻好玩的麻，還是是因為跟寶寶一起玩才好玩，嘻嘻！</strong></p>
+        </div>
+      </div>
+      <div class="flip-page tomato" id="flip-page3">
+        <div class="page-content">
+          <img src="https://i.imgur.com/ZBnaOXQ.jpeg" alt="Image for Page 3" class="flip-image1">
+          <p><strong>沒看過這張圖吧 哈哈！</strong></p>
+        </div>
+      </div>
+      <div class="flip-page tomato" id="flip-page4">
+        <div class="page-content">
+          <p><strong>跟你說明一下，這是在Ikea亂跑的寶寶，寶寶每次在外面玩都瘋瘋的，好好笑，其實還有一個在兒童新樂園奔跑的影片，以後應該要做一個奔跑寶寶合輯～</strong></p>
+        </div>
+      </div>
+      <div class="flip-page pink" id="flip-page5">
+        <div class="page-content">
+          <img src="https://i.imgur.com/fcbJOpS.jpeg" alt="Image for Page 5" class="flip-image2">
+          <p><strong>同居時光！！！</strong></p>
+        </div>
+      </div>
+      <div class="flip-page pink" id="flip-page6">
+        <div class="page-content">
+         <p><strong>真的好懷念那時候住在一起的日子喔，而且住在一起比較不會吵架，哈哈！那時候住在一起最開心的事情就是每天早上一張眼就可以看到寶寶，真的好幸福喔～</strong></p>
+        </div>
+      </div>
+      <div class="flip-page blue" id="flip-page7">
+        <div class="page-content">
+          <img src="https://i.imgur.com/DHF1DJL.jpeg" alt="Image for Page 7" class="flip-image2">
+          <p><strong>送你一張我的照片XD</strong></p>
+        </div>
+      </div>
+      <div class="flip-page blue" id="flip-page8">
+        <div class="page-content">
+          <p><strong>其實我不知道你有沒有這張照片ㄟ，但不管啦，強制贈送 哈哈，話說這張照片那時候還是你選的喔！</strong></p>
+        </div>
+      </div>
+     </div>    
+     <div class="button-container">
+        <span class="modern-button" onclick="goToPage('page3')">Back</span>
+        <span class="modern-button" onclick="goToPage('page5')">Next</span>
+     </div>
+    <p>Click to go to the next page</p>
+  </section>
+  
+  <!-- Fifth Page -->
+  <section id="page5" class="page">
+  <div id="heart-container">
+    <div class="center-content">
+      <h1>Letter to Charming</h1>
+      <p id="typewriter-text">給最愛的晡寶寶: 今天是萬聖節，剛好也過了我們認識一周年的日子喔，而且你收到這張卡片的時候，可能已經是交往一周年的時候了 XD。寶寶在菲律賓的這段期間，我真的好寂寞，好希望你趕快回來，我每天真的都好想你。看著寶寶在菲律賓上課後，感覺英文實力一直都有在進步，我就甚感欣慰 哈哈，希望寶寶的聽力也能趕快跟上，回來後趕快用英文把我電爛！ 最近你不在的這段期間，我一直在回想我們之間的點點滴滴，我想說的是我真的想跟你一直在一起，其實我也能感受到你只要沒見到我，時間一久，我的存在對你來說可能就沒有甚麼太大的價值，但即使是這樣，我都希望未來能夠跟我一起克服各種困難，克服困難後邁向幸福人生的那個人是妳。也是這幾周這種見不到妳的痛苦讓我意識到，我真的可以拋下一切只為了跟妳在一起，不管身旁有多少阻力，我都想要一一克服。雖然妳可能沒想得這麼遠，但我時不時就會想像我們未來的各種場景，每當我想像我們可能共同描繪出的未來時，我就有動力去做任何具有挑戰的事。在我眼裡，妳善良、可愛、對我又很好（除了在菲律賓都不跟我打電話以外 哼），我覺得我願意為你更加努力，講白話一點，讓我來養妳吧 哈哈哈哈！ 之後妳回台灣後，再過不久，妳可能又要去英國，而且一去英過就是一年，說我不擔心會失去妳，那都是騙人的，我自然是希望妳幸福，而在我眼裡我也覺得我能帶給妳幸福，我也會去盡我所能，付出一切去達成這件事，而在你去英國的期間，只要你不離開我，我是不會丟下妳的，這是我之前答應過妳的事情，不管外在誘惑再麼多，我的心也永遠會向者妳！ 希望寶寶在菲律賓剩餘的期間，可以輕輕鬆鬆地度過學英文的日子，不要壓力太大，過敏也趕快遠離妳，我覺得沒有一件事情是沒有辦法克服的，只要有心，我都會陪你一起，不管是痛苦的事，難過的事，都可以盡量跟我訴苦，有開心的事也記得多跟我分享喔！ 晡寶寶，我愛你！</p>
+      <p id="typewriter-text">Daniel Hsieh, 2024.11.01</p>
+    </div>
+  </div>
+    <div class="button-container">
+      <span class="modern-button" onclick="goToPage('page4')">Back</span>
+      <span class="modern-button" onclick="goToPage('page6')">Next</span>
+    </div>
+  </section>
+  
+   <!-- Sixth Page -->
+  <section id="page6" class="page">
+    
+    <canvas id="canvas"></canvas>
+    <div class="center-title">
+      <h1>Celebration Fireworks!</h1>
+      <h2>恭喜寶寶錄取Durham!!</h2>
+    </div>
+    <div class="button-container">
+      <span class="modern-button" onclick="goToPage('page5')">Back</span>
+      <span class="modern-button" onclick="goToPage('page1')">Finish</span>
+    </div>
+  </section>
+
+
+
+  <script>
+    let currentBubbleIndex = 0;
+    let typewriterIndex = 0; // Typewriter effect index
+    let typewriterInterval; // Interval variable for typewriter
+
+    window.onload = function() {
+      document.getElementById('page1').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('page1').classList.add('active');
+        fadeInImages();
+      }, 10);
+    };
+
+    function fadeInImages() {
+      const firstImage = document.getElementById('image1');
+      const secondImage = document.getElementById('image2');
+
+      firstImage.style.display = 'block';
+      firstImage.classList.add('fade-in');
+
+      setTimeout(() => {
+        secondImage.style.display = 'block';
+        secondImage.classList.add('fade-in');
+      }, 1000);
+    }
+
+    function toggleBubble() {
+      const bubbles = document.querySelectorAll('.bubble');
+      const snoopy = document.querySelector('.snoopy-image');
+
+      bubbles.forEach(bubble => {
+        bubble.classList.remove('active');
+        bubble.style.display = 'none';
+      });
+
+      const currentBubble = bubbles[currentBubbleIndex];
+      currentBubble.style.display = 'block';
+      currentBubble.classList.add('fade-in');
+      currentBubble.classList.add('active');
+
+      currentBubbleIndex = (currentBubbleIndex + 1) % bubbles.length;
+
+      document.addEventListener('click', (event) => {
+        if (!currentBubble.contains(event.target) && !snoopy.contains(event.target)) {
+          currentBubble.classList.remove('active');
+          currentBubble.style.display = 'none';
+          document.removeEventListener('click', arguments.callee);
+        }
+      });
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+
+      // Set a random position along the width
+      heart.style.left = Math.random() * 100 + "vw"; // Randomize position across the full width
+      heart.style.bottom = "0px"; // Start from the bottom
+      heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // Randomize animation speed
+
+      // Add heart to container and remove it after animation completes
+      document.getElementById("heart-container").appendChild(heart);
+      setTimeout(() => heart.remove(), 5000); // Adjust timing based on animation duration
+    }
+
+    // Start heart animation when page 5 loads
+    function startHeartAnimation() {
+      setInterval(createHeart, 500); // Creates a new heart every 500ms
+    }
+
+    // Typewriter effect function
+    function typeWriterEffect() {
+      const textElement = document.getElementById('typewriter-text');
+      const text = textElement.getAttribute("data-full-text") || textElement.innerHTML; // Full text saved in data attribute
+
+      if (!textElement.getAttribute("data-full-text")) {
+        textElement.setAttribute("data-full-text", text); // Set full text only once
+      }
+
+      textElement.innerHTML = ""; // Clear the content to start typing
+      typewriterIndex = 0; // Reset index
+      clearInterval(typewriterInterval); // Clear any existing interval
+
+      typewriterInterval = setInterval(() => {
+        if (typewriterIndex < text.length) {
+          textElement.innerHTML += text.charAt(typewriterIndex);
+          typewriterIndex++;
+        } else {
+          clearInterval(typewriterInterval); // Stop the interval when finished
+        }
+      }, 20); // Speed of typing effect
+    }
+
+    // Navigation function
+    function goToPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+        page.style.display = 'none';
+      });
+
+      const selectedPage = document.getElementById(pageId);
+      selectedPage.style.display = 'flex';
+
+      setTimeout(() => {
+        selectedPage.classList.add('active');
+
+        // Start the typewriter effect and heart animation when on Page 5
+        if (pageId === "page5") {
+          typeWriterEffect();
+          startHeartAnimation();
+        }
+
+        // Start fireworks when on Page 6
+        if (pageId === "page6") {
+          startFireworks();
+        }
+      }, 10);
+    }
+
+    let currentFlipPageIndex = 0;
+
+    function showFlipPage(index) {
+      const pages = document.querySelectorAll('.flip-page');
+      pages.forEach((page, i) => {
+        page.classList.remove('active', 'next');
+        if (i === index) {
+          page.classList.add('active');
+        } else if (i < index) {
+          page.classList.add('next');
+        }
+      });
+    }
+
+    function flipToNextPage() {
+      const pages = document.querySelectorAll('.flip-page');
+      currentFlipPageIndex = (currentFlipPageIndex + 1) % pages.length;
+      showFlipPage(currentFlipPageIndex);
+    }
+
+    // Firework animation code
+    let canvas, ctx, fireworks = [];
+
+    function initializeCanvas() {
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    // Firework animation classes
+    class Particle {
+      constructor(x, y, speedX, speedY, color) {
+        this.x = x;
+        this.y = y;
+        this.speedX = speedX;
+        this.speedY = speedY;
+        this.color = color;
+        this.size = Math.random() * 2 + 1;
+        this.alpha = 1;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= 0.005;
+        if (this.alpha <= 0) this.alpha = 0;
+      }
+
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    class Firework {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height / 2;
+        this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        this.particles = [];
+        this.createHeartShape();
+      }
+
+      createHeartShape() {
+        const maxScale = 6; // Set the maximum scale for the heart shape
+        const scale = Math.random() * maxScale;
+        for (let t = 0; t < Math.PI * 2; t += 0.1) {
+          const x = 16 * Math.pow(Math.sin(t), 3);
+          const y = -1 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+          const speedX = x * scale * 0.05;
+          const speedY = y * scale * 0.05;
+          this.particles.push(new Particle(this.x, this.y, speedX, speedY, this.color));
+        }
+      }
+
+      update() {
+        this.particles.forEach(particle => particle.update());
+      }
+
+      draw() {
+        this.particles.forEach(particle => particle.draw());
+      }
+    }
+
+    function startFireworks() {
+      initializeCanvas();
+      requestAnimationFrame(animateFireworks);
+    }
+
+    function animateFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (Math.random() < 0.1) {
+        fireworks.push(new Firework());
+      }
+
+      fireworks.forEach((firework, index) => {
+        firework.update();
+        firework.draw();
+        if (firework.particles.every(particle => particle.alpha <= 0)) {
+          fireworks.splice(index, 1);
+        }
+      });
+
+      requestAnimationFrame(animateFireworks);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.flip-page').forEach(page => {
+        page.addEventListener('click', flipToNextPage);
+      });
+      showFlipPage(currentFlipPageIndex);
+    });
+
+
+    
+    
+  </script>
+
+</body>
+</html>

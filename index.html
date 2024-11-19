@@ -17,6 +17,8 @@
     color: white;
     font-family: 'Pacifico', cursive;
   }
+  
+
 
   .page { 
     display: none; 
@@ -31,11 +33,14 @@
     text-align: center;
     padding: 20px;
   }
+  
+  
 
   .page.active { 
     display: flex; 
     opacity: 1;
   }
+  
 
   /* Button style */
   .modern-button {
@@ -53,6 +58,7 @@
   .modern-button:hover {
     color: #ddd;
   }
+
 
   /* Page 1 styles */
   #page1 h1 {
@@ -824,12 +830,19 @@
     let typewriterInterval; // Interval variable for typewriter
 
     window.onload = function() {
-      document.getElementById('page1').style.display = 'flex';
+      const initialPage = document.getElementById('page1');
+      initialPage.style.display = 'flex'; // Show Page 1
+      initialPage.classList.add('active');
+
+      // Disable scrolling for the initial page
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+
       setTimeout(() => {
-        document.getElementById('page1').classList.add('active');
-        fadeInImages();
+        fadeInImages(); // Optional: Run fade-in animations if needed
       }, 10);
     };
+
 
     function fadeInImages() {
       const firstImage = document.getElementById('image1');
@@ -921,9 +934,19 @@
 
       const selectedPage = document.getElementById(pageId);
       selectedPage.style.display = 'flex';
+      
+      if (pageId === 'page1') {
+        document.body.style.overflow = 'hidden'; // Disable scrolling
+        document.documentElement.style.overflow = 'hidden'; // For root element
+      } else {
+        document.body.style.overflow = 'auto'; // Enable scrolling for other pages
+        document.documentElement.style.overflow = 'auto';
+      }
 
       setTimeout(() => {
         selectedPage.classList.add('active');
+        
+          
 
         // Start the typewriter effect and heart animation when on Page 5
         if (pageId === "page5") {
@@ -1060,6 +1083,8 @@
       });
       showFlipPage(currentFlipPageIndex);
     });
+    
+    
 
 
     
